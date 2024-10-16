@@ -5,33 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensor List</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <style>
+        button {
+            padding: 4px 12px;
+            font-size: 0.875rem; /* Adjust the font size */
+            text-align: center; /* Ensures text is centered horizontally */
+            display: inline-flex; /* Ensures flex alignment works */
+            justify-content: center; /* Center text horizontally */
+            align-items: center; /* Center text vertically */
+        }
+    </style>
 </head>
 <body>
     <main class="container">
-		<h1>Sensor Registration System</h1>
-        <h1>Sensor List</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Sensor Name</th>
-                    <th>Sensor Type</th>
-                    <th>Sensor Pin</th>
-                    <th>Sensor Location</th>
-                    <th>Sensor Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="sensor : ${sensors}">
-                    <td th:text="${sensor.sensorName}">Humidity Sensor</td>
-                    <td th:text="${sensor.sensorType}">Humidity</td>
-                    <td th:text="${sensor.sensorPin}">123</td>
-                    <td th:text="${sensor.sensorLocation}">Greenhouse</td>
-                    <td th:text="${sensor.sensorStatus}">ON</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Total Sensors: <span th:text="${totalSensors}">0</span></p>
-        <a role="button" href="/addSensor" class="contrast">Add New Sensor</a>
-    </main>
+	<h1>Sensor Registration System</h1>
+    <h2>Sensor List</h2>
+    <p>Total Sensors: <span th:text="${totalSensors}">0</span></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Pin</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sensor : ${sensors}">
+                <td th:text="${sensor.sensorName}">Sensor Name</td>
+                <td th:text="${sensor.sensorType}">Sensor Type</td>
+                <td th:text="${sensor.sensorPin}">Sensor Pin</td>
+                <td th:text="${sensor.sensorLocation}">Sensor Location</td>
+                <td th:text="${sensor.sensorStatus}">Sensor Status</td>
+                <td>
+                    <button style="display: flex; gap: 8px;" th:href="@{/editSensor/{sensorId}(id=${sensor.sensorId})}">Edit</button>
+                    <form th:action="@{/deleteSensor/{sensorId}(id=${sensor.sensorId})}" method="post" style="display:inline;">
+                        <button style="display: flex; gap: 8px;" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button style="width:20%" href="/addSensor">Add New Sensor</button>
 </body>
 </html>

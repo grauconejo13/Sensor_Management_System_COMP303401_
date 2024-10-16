@@ -30,6 +30,16 @@ public class Sensor {
     private String sensorStatus;
 
  // Getter and Setter for sensorName
+    
+ // Getter and Setter for id
+   
+
+    public void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
+    } 
+    public String getSensorId() {
+        return sensorId;
+    }
     public String getSensorName() {
         return sensorName;
     }

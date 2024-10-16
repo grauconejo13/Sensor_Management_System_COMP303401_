@@ -36,4 +36,25 @@ public class SensorController {
         sensorService.saveSensor(sensor);
         return "redirect:/";
     }
+    
+    // Display form for editing an existing sensor
+    @GetMapping("/editSensor/{sensorId}")
+    public String editSensorForm(@PathVariable String sensorId, Model model) {
+        sensorService.getSensorById(sensorId).ifPresent(sensor -> model.addAttribute("sensor", sensor));
+        return "editSensor";
+    }
+
+    // Update a sensor after editing
+    @PostMapping("/editSensor")
+    public String updateSensor(@ModelAttribute Sensor sensor) {
+        sensorService.saveSensor(sensor);
+        return "redirect:/";
+    }
+
+    // Delete a sensor by ID
+    @PostMapping("/deleteSensor/{sesorId}")
+    public String deleteSensor(@PathVariable String sensorId) {
+        sensorService.deleteSensorById(sensorId);
+        return "redirect:/";
+    }
 }

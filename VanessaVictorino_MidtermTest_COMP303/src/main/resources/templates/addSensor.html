@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Sensor</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Add Sensor</h1>
+        <form th:action="@{/addSensor}" th:object="${sensor}" method="post">
+            <label for="sensorName">Sensor Name</label>
+            <input type="text" id="sensorName" th:field="*{sensorName}" required placeholder="Humidity Sensor" />
+            
+            <label for="sensorType">Sensor Type</label>
+            <input type="text" id="sensorType" th:field="*{sensorType}" required placeholder="Humidity" />
+            
+            <label for="sensorPin">Sensor Pin</label>
+            <input type="number" id="sensorPin" th:field="*{sensorPin}" required min="0" max="1000" placeholder="123" />
+            
+            <label for="sensorLocation">Sensor Location (Optional)</label>
+            <input type="text" id="sensorLocation" th:field="*{sensorLocation}" placeholder="Office" />
+            
+            <label for="sensorStatus">Sensor Status</label>
+            <select id="sensorStatus" th:field="*{sensorStatus}" required>
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select>
+            
+            <button type="submit" class="contrast">Add Sensor</button>
+        </form>
+        <a href="/" class="secondary">Back to Sensor List</a>
+    </main>
+</body>
+</html>

@@ -6,31 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Sensor</title>
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+   <style>
+	   form{width:400px;}
+	   button{background-color: #333333;}
+   </style>
 </head>
 <body>
+	<main class="container">
     <h1>Edit Sensor</h1>
+    
     <form th:action="@{/editSensor}" th:object="${sensor}" method="post">
-        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{sensorId}" />
         <label for="sensorName">Sensor Name:</label>
-        <input type="text" id="sensorName" th:field="*{sensorName}" required>
-        <br/>
+        <input type="text" id="sensorName" th:field="*{sensorName}" required />
+        <br />
         <label for="sensorType">Sensor Type:</label>
-        <input type="text" id="sensorType" th:field="*{sensorType}" required>
-        <br/>
+        <input type="text" id="sensorType" th:field="*{sensorType}" required />
+        <br />
         <label for="sensorPin">Sensor Pin:</label>
-        <input type="number" id="sensorPin" th:field="*{sensorPin}" required>
-        <br/>
-        <label for="sensorPin">Sensor Location (Optional):</label>
-        <input type="number" id="sensorPin" th:field="*{sensorLocation" required>
-        <br/>
+        <input type="number" id="sensorPin" th:field="*{sensorPin}" required />
+        <br />
         <label for="sensorStatus">Sensor Status:</label>
         <select th:field="*{sensorStatus}">
             <option value="ON">ON</option>
             <option value="OFF">OFF</option>
         </select>
-        <br/>
-        <button type="submit">Update Sensor</button>
+        <br />
+        <button class="contrast" type="submit">Update Sensor</button>
     </form>
-    <a href="/">Back to Sensor List</a>
+     <a href="/" class="secondary">Back to Sensor List</a>
+    </main>
 </body>
 </html>
